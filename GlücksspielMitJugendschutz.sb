@@ -1,0 +1,100 @@
+TextWindow.WriteLine("Wie alt bist du?")
+ausdauer = 100
+chance = 4
+alter = TextWindow.Read()
+If alter < 18 Then
+  TextWindow.WriteLine ("Du bist zu jung für dieses Spiel! Leider musst du dir ein anderes Spiel suchen.")
+  geld = 0
+Else 
+  TextWindow.WriteLine ("Viel Erfolg!")
+  geld = 2000
+EndIf
+While geld > 0 And ausdauer > 0
+TextWindow.WriteLine ("Dein Einsatz?")
+einsatz = TextWindow.Read()
+While einsatz = "geld" Or einsatz > geld Or einsatz = "shop" Or einsatz = "op" Or einsatz = "ausdauer"
+  If einsatz = "geld" Then
+    TextWindow.WriteLine ("Du hast " + geld + " geld")
+    TextWindow.WriteLine ("Dein Einsatz?")
+    einsatz = TextWindow.Read()
+  ElseIf einsatz > geld then
+    TextWindow.WriteLine ("So viel hast du nicht. Du kanns höchstens " + geld + " setzen")
+    TextWindow.WriteLine ("Dein Einsatz?")
+    einsatz = TextWindow.Read()
+  ElseIf einsatz = "op" then
+    geldplus = TextWindow.Read()
+    geld = geld + geldplus
+    TextWindow.WriteLine ("Dein Einsatz?")
+    einsatz = TextWindow.Read()
+  Elseif einsatz = "ausdauer" then
+    TextWindow.WriteLine ("Du hast " + ausdauer + " Ausdauer")
+    TextWindow.WriteLine ("Dein Einsatz?")
+    einsatz = TextWindow.Read()
+  ElseIf einsatz = "shop" then
+    TextWindow.WriteLine ("Das ist der Shop. Hier kannst du mit deinem Geld deine Chance verbessern. Im Moment ist deine Chance 1 zu " + chance)
+    TextWindow.WriteLine ("100 Ausdauer für 100 geld")
+    TextWindow.WriteLine ("1 zu 3 Chance für 2000 geld")
+    TextWindow.WriteLine ("1 zu 2 Chance für 4000 geld")
+    TextWindow.WriteLine ("1 zu 1 Chance für 10000 geld")
+    shopgeld = TextWindow.Read()
+    While shopgeld = 100 or shopgeld = 2000 or shopgeld = 4000 or shopgeld = 10000
+      If shopgeld = 2000 and geld > shopgeld then
+        TextWindow.WriteLine ("Deine Chance ist jetzt bei 1 zu 3!")
+        geld = geld - shopgeld
+        shopgeld = 0
+        chance = 3
+        TextWindow.WriteLine ("Dein Einsatz?")
+        einsatz = TextWindow.Read()
+      Elseif shopgeld = 4000 and geld > shopgeld then
+        TextWindow.WriteLine ("Deine Chance ist jetzt bei 1 zu 2!")
+        geld = geld - shopgeld
+        shopgeld = 0
+        chance = 2
+        TextWindow.WriteLine ("Dein Einsatz?")
+        einsatz = TextWindow.Read()
+      Elseif shopgeld = 10000 and geld > shopgeld then
+        TextWindow.WriteLine ("Deine Chance ist jetzt bei 1 zu 1!")
+        geld = geld - shopgeld
+        shopgeld = 0  
+        chance = 1
+        TextWindow.WriteLine ("Dein Einsatz?")
+        einsatz = TextWindow.Read()
+      Elseif shopgeld = 100 and geld > shopgeld then
+        geld = geld - shopgeld
+        shopgeld = 0
+        ausdauer = ausdauer + 100
+        TextWindow.WriteLine ("Du hast jetzt " + ausdauer + " Ausdauer")
+        TextWindow.WriteLine ("Dein Einsatz?")
+        einsatz = TextWindow.Read()
+      Elseif geld < shopgeld then
+        shopgeld = 0
+        TextWindow.WriteLine ("Du hast nicht genug Geld")
+        TextWindow.WriteLine ("Dein Einsatz?")
+        einsatz = TextWindow.Read()
+      EndIf
+    EndWhile
+EndIf
+EndWhile
+random = Math.GetRandomNumber(chance)
+geld = geld - einsatz
+If random = 1 Then
+  TextWindow.WriteLine ("gewonnen, Sie bekommen " + einsatz*2)
+  geld = geld + einsatz*2
+Else
+  TextWindow.WriteLine("verloren, Sie bekommen nichts")
+  ausdauer = ausdauer - 1
+  If ausdauer < 10 then
+    TextWindow.WriteLine ("")
+    TextWindow.WriteLine ("Deine Ausdauer ist niedrig. Gehe in den Shop indem du *shop* eingibst, um dir Ausdauer zu kaufen.") 
+  EndIf
+EndIf
+EndWhile
+If alter > 17 And ausdauer > 0 Then
+  TextWindow.WriteLine ("")
+  TextWindow.WriteLine ("Du bist pleite")
+  TextWindow.WriteLine ("")
+ElseIf ausdauer <= 0 then
+  TextWindow.WriteLine ("")
+  TextWindow.WriteLine ("Du hast keine Ausdauer mehr! Du musst leider gehen. Hier dein gewinn. " + geld)
+  TextWindow.WriteLine ("")
+EndIf
