@@ -14,7 +14,7 @@ TextWindow.WriteLine ("Dein Einsatz?")
 einsatz = TextWindow.Read()
 While einsatz = "geld" Or einsatz > geld Or einsatz = "shop" Or einsatz = "op" Or einsatz = "ausdauer"
   If einsatz = "geld" Then
-    TextWindow.WriteLine ("Du hast " + geld + " geld")
+    TextWindow.WriteLine ("Du hast " + geld + " Geld")
     TextWindow.WriteLine ("Dein Einsatz?")
     einsatz = TextWindow.Read()
   ElseIf einsatz > geld then
@@ -32,10 +32,10 @@ While einsatz = "geld" Or einsatz > geld Or einsatz = "shop" Or einsatz = "op" O
     einsatz = TextWindow.Read()
   ElseIf einsatz = "shop" then
     TextWindow.WriteLine ("Das ist der Shop. Hier kannst du mit deinem Geld deine Chance verbessern. Im Moment ist deine Chance 1 zu " + chance)
-    TextWindow.WriteLine ("100 Ausdauer für 100 geld")
-    TextWindow.WriteLine ("1 zu 3 Chance für 2000 geld")
-    TextWindow.WriteLine ("1 zu 2 Chance für 4000 geld")
-    TextWindow.WriteLine ("1 zu 1 Chance für 10000 geld")
+    TextWindow.WriteLine ("100 Ausdauer für 100 Geld")
+    TextWindow.WriteLine ("1 zu 3 Chance für 2000 Geld")
+    TextWindow.WriteLine ("1 zu 2 Chance für 4000 Geld")
+    TextWindow.WriteLine ("1 zu 1 Chance für 10000 Geld")
     shopgeld = TextWindow.Read()
     While shopgeld = 100 or shopgeld = 2000 or shopgeld = 4000 or shopgeld = 10000
       If shopgeld = 2000 and geld > shopgeld then
