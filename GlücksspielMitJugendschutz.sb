@@ -7,7 +7,7 @@ If alter < 18 Then
   geld = 0
 Else 
   TextWindow.WriteLine ("Viel Erfolg!")
-  geld = 2000
+  geld = 1000
 EndIf
 While geld > 0 And ausdauer > 0
 TextWindow.WriteLine ("Dein Einsatz?")
