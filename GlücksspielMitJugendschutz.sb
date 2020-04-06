@@ -2,13 +2,7 @@ TextWindow.WriteLine("Wie alt bist du?")
 ausdauer = 100
 chance = 4
 alter = TextWindow.Read()
-If alter < 18 Then
-  TextWindow.WriteLine ("Du bist zu jung für dieses Spiel! Leider musst du dir ein anderes Spiel suchen.")
-  geld = 0
-Else 
-  TextWindow.WriteLine ("Viel Erfolg!")
-  geld = 1000
-EndIf
+altersPruefung()
 While geld > 0 And ausdauer > 0
 TextWindow.WriteLine ("Dein Einsatz?")
 einsatz = TextWindow.Read()
@@ -98,3 +92,13 @@ ElseIf ausdauer <= 0 then
   TextWindow.WriteLine ("Du hast keine Ausdauer mehr! Du musst leider gehen. Hier dein gewinn. " + geld)
   TextWindow.WriteLine ("")
 EndIf
+
+Sub altersPruefung
+  If alter < 18 Then
+    TextWindow.WriteLine ("Du bist zu jung für dieses Spiel! Leider musst du dir ein anderes Spiel suchen.")
+    geld = 0
+  Else 
+    TextWindow.WriteLine ("Viel Erfolg!")
+    geld = 1000
+  EndIf
+EndSub
